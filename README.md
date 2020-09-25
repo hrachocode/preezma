@@ -21,7 +21,8 @@ Front end URL:  [https://preezma-front.herokuapp.com/](https://preezma-front.her
 API URL:  [https://preezma-api.herokuapp.com/](https://preezma-api.herokuapp.com/)
 
 ## Repositories
-Front [https://github.com/hrachocode/preezma](https://github.com/hrachocode/preezma)
+Front End [https://github.com/hrachocode/preezma](https://github.com/hrachocode/preezma)
+Back End [https://github.com/hrachocode/preezma-back](https://github.com/hrachocode/preezma-back)
 
 ## Form configuration Scheme
 
@@ -47,7 +48,7 @@ to
             1. Form fields
                   Name - accepts only Latin characters | Required | should not be empty
                   Phone - accepts only numbers | required | should not be empty
-                  date - valid date time | required | should not be empty
+                  date - Generating automatically by todays date from back end - no need to mention from front end.
 
             2. to update provided scheme you need to call to specific API which mentioned in Routes section 
                   providing new scheme wtih required fields

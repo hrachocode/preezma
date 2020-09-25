@@ -42,7 +42,7 @@ const Contacts = () => {
                                                 index={index}
                                                 name={elem.name}
                                                 phone={elem.phone}
-                                                dateCreated={elem.dateCreated}
+                                                dateCreated={elem.date}
                                           />
                                           <Modal index={index} name={elem.name} onDelete={() => deleteContact(elem.id)} />
                                     </div>

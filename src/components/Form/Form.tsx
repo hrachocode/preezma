@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import Input from '../Input/Input';
 import { setRequest } from '../../Utils/utils';
 import { useFetch } from '../../hooks/useFetch/useFetch';
@@ -56,7 +55,7 @@ const Form = () => {
                               placeholder={elem.name}
                               disabled={elem.type === 'submit' && Object.values(inputValues).indexOf('') !== -1}
                               errorMessage={elem.errorMessage}
-                              value={(inputValues as any)[elem.name]}
+                              value={(inputValues as any)[elem.name] || ""}
                         />)}
                   <p>{requestError}</p>
             </form> : <div className='text-center'>{<Loader />}</div>
