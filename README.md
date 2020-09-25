@@ -8,6 +8,12 @@
       REST Api
       Bootstrap 4
 
+## Client side state management
+
+Project is using both Redux global state and component based state management
+as application is too small main staff is handled by component level state, 
+redux is implement just for a showcase
+
 ## Deployment
 
 Project is deployed to heroku to test UI and UX as well<br />
@@ -81,6 +87,13 @@ current scheme >>
             method: post
             data: ... new configuration object to replace existing
       
+
+## Vision
+      Here is the points that are not required by test task but can make application better
+      1. global Loader component to wrap children and provide loading state
+      2. custom UI to update Form Configuration fields via API
+      3. CRUD to work with form configuration
+      4. Microservices architecture implementation
 
 ## Available Scripts
 
