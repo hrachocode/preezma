@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import Input from '../Input/Input';
+import { setRequest } from '../../Utils/utils';
+import { useFetch } from '../../hooks/useFetch/useFetch';
+import Loader from '../Loader/Loader';
 
 const Form = () => {
+      const history = useHistory();
 
       const formSchema = {
             text: {
@@ -34,21 +40,36 @@ const Form = () => {
             }
       }
 
+      const { isLoading } = useFetch({
+            url: 'form/get',
+      });
       const [inputValues, setValue] = useState({
             name: '',
             date: '',
             phone: ''
       });
+      const [requestError, setRequestError] = useState('');
 
       const handleChange = (e: React.SyntheticEvent) => {
             e.persist();
             let target = e.target as HTMLInputElement;
             const resuableTarget: any = target.getAttribute('name')
-            setValue(() => ({ ...inputValues, [resuableTarget] : target.value }))
+            setValue(() => ({ ...inputValues, [resuableTarget]: target.value }))
+      }
+
+      const handleSubmit = async (e: React.SyntheticEvent) => {
+            e.preventDefault();
+            await setRequest({
+                  method: 'post',
+                  url: 'contacts/add',
+                  data: inputValues,
+                  onSuccess: () => history.push('/'),
+                  onFail: () => setRequestError('Something went Wrong')
+            })
       }
 
       return (
-            <form>
+            !isLoading ? <form onSubmit={handleSubmit}>
                   {Object.values(formSchema).map((elem, index) =>
                         <Input
                               key={index}
@@ -61,7 +82,8 @@ const Form = () => {
                               disabled={elem.type === 'submit' && Object.values(inputValues).indexOf('') !== -1}
                               errorMessage={elem.errorMessage}
                         />)}
-            </form>
+                  <p>{requestError}</p>
+            </form> : <div className='text-center'>{<Loader />}</div>
       );
 }
 

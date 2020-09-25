@@ -14,6 +14,7 @@ export const routesConfig: { path: string, exact?: boolean, component: any }[] =
       },
       {
             path: '*',
+            exact: true,
             component: NotFoundPage
       }
 ]

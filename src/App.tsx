@@ -1,12 +1,10 @@
 import React from 'react';
-
 import { Switch } from 'react-router-dom';
 
 import SubRouting from './components/Routes/SubRouting';
-
-import './App.css';
 import { routesConfig } from './config/routesConfig';
 
+import './App.css';
 
 function App() {
   return (

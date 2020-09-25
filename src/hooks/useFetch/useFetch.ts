@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios, {Method} from 'axios';
+
 import { HOST } from "../../config/contants";
 
 interface fetchPropTypes {
