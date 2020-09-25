@@ -48,7 +48,7 @@ to
             1. Form fields
                   Name - accepts only Latin characters | Required | should not be empty
                   Phone - accepts only numbers | required | should not be empty
-                  date - Generating automatically by todays date from back end - no need to mention from front end.
+                  date - accepts only valid date | NOT required | should not be empty
 
             2. to update provided scheme you need to call to specific API which mentioned in Routes section 
                   providing new scheme wtih required fields

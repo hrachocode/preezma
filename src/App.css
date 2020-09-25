@@ -34,11 +34,18 @@
   border-color: #cef transparent transparent transparent;
 }
 
-.custom-card div:not(:last-child){
+.custom-card div:not(:last-child) {
   margin-right: 22px;
 }
 
+input[type='submit']:not(:disabled) {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
 /* Loader CSS */
+
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }
@@ -48,7 +55,7 @@
 }
 
 .lds-ring div:nth-child(3) {
-  animation-delay: -0.15s; 
+  animation-delay: -0.15s;
 }
 
 @keyframes lds-ring {
