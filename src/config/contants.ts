@@ -1,2 +1,1 @@
-export const HOST = 'https://api.testtask.herokuapp.com/';
-// export const HOST = 'http://localhost:3000/';
+export const HOST = 'https://preezma-api.herokuapp.com/';

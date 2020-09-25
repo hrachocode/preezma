@@ -26,44 +26,35 @@ Front [https://github.com/hrachocode/preezma](https://github.com/hrachocode/pree
 ## Form configuration Scheme
 
 as test tesk is realised with full stack approach
-Scheme is stored in Database, and could ba replaced by specific endpoint described in Routes section
-current scheme >> 
-
+Form Scheme is stored in Database, and could ba replaced by specific endpoint described in Routes section
+current scheme >>
+to 
 ```json
 {
-      "text": {
-            "label": "Name",
-            "name": "name",
-            "type": "text",
+    "fields": [
+        {
+            "name": "Fied2",
+            "label": "Label2",
+            "type": "number",
             "required": true,
-            "errorMessage": "Name is required and must a valid string"
-      },
-      "phone": {
-            "label": "Phone",
-            "name": "phone",
-            "type": "tel",
-            "required": true,
-            "errorMessage": "Phone is required and must a valid phone number"
-      },
-      "date": {
-            "label": "Date",
-            "name": "date",
-            "type": "date",
-            "required": false,
-            "errorMessage": "Phone is required and must a valid date time"
-      },
-      "submit": {
-            "label": "Submit",
-            "name": "submit",
-            "type": "submit",
-            "required": false,
-            "errorMessage": ""
-      }
+            "errorMessage": "This field is required"
+        }
+    ]
 }
 ```
 
+      Current Form Setup
+            1. Form fields
+                  Name - accepts only Latin characters | Required | should not be empty
+                  Phone - accepts only numbers | required | should not be empty
+                  date - valid date time | required | should not be empty
+
+            2. to update provided scheme you need to call to specific API which mentioned in Routes section 
+                  providing new scheme wtih required fields
 
 ## Routes
+
+      Postman routes import link: https://www.getpostman.com/collections/365895a18dd35203f8e2
 
       Client side
       / - Main Route rendering list of contacts
@@ -72,8 +63,10 @@ current scheme >>
       Server side
       /contacts/get - getting list of contacts
             Method: get
+
       /contacts/add - adding list of contacts
             Method: post
+            Data Example >
 ```json
       "data": {
             "name"
@@ -83,17 +76,21 @@ current scheme >>
 ```
       /form/get - getting From configuration scheme
             method: get
+
       /form/post - changing Form configuration scheme
             method: post
-            data: ... new configuration object to replace existing
+            data: ... new configuration object to replace existing NOTE: must be provided the whole form object itselt and not the single field
       
 
 ## Vision
       Here is the points that are not required by test task but can make application better
-      1. global Loader component to wrap children and provide loading state
-      2. custom UI to update Form Configuration fields via API
-      3. CRUD to work with form configuration
-      4. Microservices architecture implementation
+            1. global Loader component to wrap children and provide loading state
+            2. custom UI to update Form Configuration fields via API
+            3. CRUD to work with form configuration
+            4. Microservices architecture implementation
+            5. Bulk delete each contact separately
+            6. setup tests both for front end and back end
+            7. setup preprocessor like SCSS or use CSS modules system
 
 ## Available Scripts
 

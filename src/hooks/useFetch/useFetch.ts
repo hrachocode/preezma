@@ -37,5 +37,5 @@ export const useFetch = ({ method = 'GET', url, data, config }: fetchPropTypes) 
             fetchData();
       }, [method, url, data, config]);
 
-      return { response, error, isLoading };
+      return { response, error, isLoading, setResponse };
 }

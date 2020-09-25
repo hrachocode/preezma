@@ -34,6 +34,11 @@
   border-color: #cef transparent transparent transparent;
 }
 
+.custom-card div:not(:last-child){
+  margin-right: 22px;
+}
+
+/* Loader CSS */
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }

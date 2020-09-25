@@ -1,71 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Contact from '../../components/Contact/Contact';
 import Loader from '../../components/Loader/Loader';
+import Modal from '../../components/Modal/Modal';
 import { useFetch } from '../../hooks/useFetch/useFetch';
 import { setRequest } from '../../Utils/utils';
 
 const Contacts = () => {
-      const mockupData: {
-            id: '1',
-            Name: 'contact 1',
-            Phone: '09922284',
-            DateCreated: '12-15-2020'
-      }[] = [
-                  {
-                        id: '1',
-                        Name: 'contact 1',
-                        Phone: '09922284',
-                        DateCreated: '12-15-2020'
-                  },
-                  {
-                        id: '1',
-                        Name: 'contact 1',
-                        Phone: '09922284',
-                        DateCreated: '12-15-2020'
-                  },
-                  {
-                        id: '1',
-                        Name: 'contact 1',
-                        Phone: '09922284',
-                        DateCreated: '12-15-2020'
-                  },
-                  {
-                        id: '1',
-                        Name: 'contact 1',
-                        Phone: '09922284',
-                        DateCreated: '12-15-2020'
-                  },
-                  {
-                        id: '1',
-                        Name: 'contact 1',
-                        Phone: '09922284',
-                        DateCreated: '12-15-2020'
-                  },
-                  {
-                        id: '1',
-                        Name: 'contact 1',
-                        Phone: '09922284',
-                        DateCreated: '12-15-2020'
-                  },
-            ]
-
       const [requestError, setRequestError] = useState('');
-      const { response, error, isLoading } = useFetch({
-            url: 'contacts/get',
+      const { response, isLoading, setResponse }: { response: any, isLoading: boolean, setResponse: Function } = useFetch({
+            url: 'contacts/all',
       });
 
-      useEffect(() => {
-            console.log(response, error, isLoading)
-      }, [response, error, isLoading]);
+      const updateContacts = (id: string) => {
+            $('.modal').modal('hide');
+            setResponse(() => [ ...response.filter((elem: any) => elem.id !== id)]);
+      } 
 
       const deleteContact = async (id: string) => {
             await setRequest({
-                  method: 'post',
-                  url: 'contacts/delete',
-                  data: id,
-                  onSuccess: () => mockupData.filter(elem => elem.id !== id),
+                  method: 'DELETE',
+                  url: `contacts/delete/${id}`,
+                  data: null,
+                  onSuccess: () => updateContacts(id),
                   onFail: () => setRequestError('Something went Wrong')
             })
       }
@@ -76,22 +34,26 @@ const Contacts = () => {
                         <p className="h2 text-center">My Contacts</p>
                         <Link className='text-left' to='/add-contact'>Add New Contact</Link>
                   </div>
-                  {!isLoading ? (mockupData && mockupData.length > 0 ?
-                        <div className='row d-flex justify-content-between'>
-                              {mockupData.map((elem, index) =>
-                                    <Contact
-                                          key={index}
-                                          name={elem.Name}
-                                          phone={elem.Phone}
-                                          dateCreated={elem.DateCreated}
-                                          onDelete={() => deleteContact('elem.id')}
-                                    />)}
+                  {!isLoading ? (response && response.length > 0 ?
+                        <div className='row d-flex justify-content-flex-start'>
+                              {response.map((elem: any, index: number) =>
+                                    <div key={index}>
+                                          <Contact
+                                                index={index}
+                                                name={elem.name}
+                                                phone={elem.phone}
+                                                dateCreated={elem.dateCreated}
+                                          />
+                                          <Modal index={index} name={elem.name} onDelete={() => deleteContact(elem.id)} />
+                                    </div>
+                              )}
                               <p>{requestError}</p>
+
                         </div> :
                         <div className="empty-contacts text-center">
                               <p className="h2">No Contacts created yet</p>
                               <Link to='/add-contact'>Create one</Link>
-                        </div>) : <div className='text-center'><Loader /></div> 
+                        </div>) : <div className='text-center'><Loader /></div>
                   }
             </>
       );

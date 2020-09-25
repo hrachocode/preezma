@@ -6,49 +6,24 @@ import { setRequest } from '../../Utils/utils';
 import { useFetch } from '../../hooks/useFetch/useFetch';
 import Loader from '../Loader/Loader';
 
+interface formInputTypes {
+      name: string,
+      phone: string,
+      submit: string,
+}
+
 const Form = () => {
       const history = useHistory();
-
-      const formSchema = {
-            text: {
-                  label: "Name",
-                  name: "name",
-                  type: "text",
-                  required: true,
-                  errorMessage: 'Name is required and must a valid string'
-            },
-            phone: {
-                  label: "Phone",
-                  name: "phone",
-                  type: "tel",
-                  required: true,
-                  errorMessage: 'Phone is required and must a valid phone number'
-            },
-            date: {
-                  label: "Date",
-                  name: "date",
-                  type: "date",
-                  required: false,
-                  errorMessage: "Phone is required and must a valid date time"
-            },
-            submit: {
-                  label: "Submit",
-                  name: "submit",
-                  type: "submit",
-                  required: false,
-                  errorMessage: ""
-            }
-      }
-
-      const { isLoading } = useFetch({
-            url: 'form/get',
-      });
-      const [inputValues, setValue] = useState({
+      const [inputValues, setValue] = useState<formInputTypes>({
             name: '',
-            date: '',
-            phone: ''
+            phone: '',
+            submit: 'Add Contact'
       });
       const [requestError, setRequestError] = useState('');
+
+      const { response, isLoading }: {response: any, isLoading: boolean} = useFetch({
+            url: 'forms/get',
+      });
 
       const handleChange = (e: React.SyntheticEvent) => {
             e.persist();
@@ -70,7 +45,7 @@ const Form = () => {
 
       return (
             !isLoading ? <form onSubmit={handleSubmit}>
-                  {Object.values(formSchema).map((elem, index) =>
+                  {response.fields.map((elem: any, index: number) =>
                         <Input
                               key={index}
                               onChange={handleChange}
@@ -81,6 +56,7 @@ const Form = () => {
                               placeholder={elem.name}
                               disabled={elem.type === 'submit' && Object.values(inputValues).indexOf('') !== -1}
                               errorMessage={elem.errorMessage}
+                              value={(inputValues as any)[elem.name]}
                         />)}
                   <p>{requestError}</p>
             </form> : <div className='text-center'>{<Loader />}</div>
