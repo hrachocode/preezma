@@ -9,39 +9,39 @@
 
 ## Form configuration Scheme
 
-as test tesk is realized with full stack approach
+as test tesk is realised with full stack approach
 Scheme is stored in Database, and could ba replaced by specific endpoint described in Routes section
 current scheme >> 
 
 ```json
 {
-      text: {
-            label: "Name",
-            name: "name",
-            type: "text",
-            required: true,
-            errorMessage: "Name is required and must a valid string"
+      "text": {
+            "label": "Name",
+            "name": "name",
+            "type": "text",
+            "required": true,
+            "errorMessage": "Name is required and must a valid string"
       },
-      phone: {
-            label: "Phone",
-            name: "phone",
-            type: "tel",
-            required: true,
-            errorMessage: "Phone is required and must a valid phone number"
+      "phone": {
+            "label": "Phone",
+            "name": "phone",
+            "type": "tel",
+            "required": true,
+            "errorMessage": "Phone is required and must a valid phone number"
       },
-      date: {
-            label: "Date",
-            name: "date",
-            type: "date",
-            required: false,
-            errorMessage: "Phone is required and must a valid date time"
+      "date": {
+            "label": "Date",
+            "name": "date",
+            "type": "date",
+            "required": false,
+            "errorMessage": "Phone is required and must a valid date time"
       },
-      submit: {
-            label: "Submit",
-            name: "submit",
-            type: "submit",
-            required: false,
-            errorMessage: ""
+      "submit": {
+            "label": "Submit",
+            "name": "submit",
+            "type": "submit",
+            "required": false,
+            "errorMessage": ""
       }
 }
 ```
@@ -49,20 +49,22 @@ current scheme >>
 
 ## Routes
 
-Client side
+      Client side
       / - Main Route rendering list of contacts
       /add-contact - Route for adding contacts
 
-Server side
+      Server side
       /contacts/get - getting list of contacts
             Method: get
       /contacts/add - adding list of contacts
             Method: post
-            data: {
-                  name,
-                  phone,
-                  date
-            }
+```json
+      "data": {
+            "name"
+            "phone"
+            "date"
+      }
+```
       /form/get - getting From configuration scheme
             method: get
       /form/post - changing Form configuration scheme
