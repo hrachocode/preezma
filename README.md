@@ -3,9 +3,19 @@
       React / Redux Tooolkit
       Typescript
       Node Js / Express JS
-      TypeORM as a Database
+      PostgreSQL as a SQL Database
+      TypeORM as a ORM for PostgreSQL with power of typescript
       REST Api
       Bootstrap 4
+
+## Deployment
+
+Project is deployed to heroku to test UI and UX as well<br />
+Front end URL:  [https://preezma-front.herokuapp.com/](https://preezma-front.herokuapp.com/)<br /> 
+API URL:  [https://preezma-api.herokuapp.com/](https://preezma-api.herokuapp.com/)
+
+## Repositories
+Front [https://github.com/hrachocode/preezma](https://github.com/hrachocode/preezma)
 
 ## Form configuration Scheme
 
